@@ -1,25 +1,245 @@
 plugins {
     id 'java'
+    id 'java-library' // for api ...
     id 'org.springframework.boot' version '3.2.1'
     id 'io.spring.dependency-management' version '1.1.4'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+var commonProject = project(':common')
+var healthCheckProject = project(demoHealthCheckModule)
+var jpaCoreProject = project(demoJpaCoreModule)
+var globalExceptionHandlerCoreProject = project(globalExceptionHandlerModule)
 
-java {
-    sourceCompatibility = '21'
+allprojects {
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    repositories {
+        mavenCentral()
+        google()
+    }
 }
 
-repositories {
-    mavenCentral()
+subprojects {
+    dependencies {
+        implementation 'org.springframework:spring-web'
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'com.fasterxml.jackson.core:jackson-annotations'
+        implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+        // Pageable
+        implementation 'org.springframework.data:spring-data-commons'
+
+        // Lombok
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+        configureEach {
+            // exclude LOGBACK
+            exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        }
+    }
+
+    bootJar {
+        enabled = false
+    }
+
+    // Enable Java Preview (1)
+    compileJava {
+        options.compilerArgs += [
+                '--enable-preview',
+                '-Amapstruct.defaultComponentModel=spring',
+        ]
+    }
+
+    // Enable Java Preview (2)
+    compileTestJava {
+        options.compilerArgs += ['--enable-preview']
+    }
+
+    // Enable Java Preview (3)
+    test {
+        useJUnitPlatform()
+        jvmArgs(['--enable-preview'])
+    }
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+project(':common') {
+    // ...
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+project(demoJpaCoreModule) {
+    dependencies {
+        implementation commonProject
+        api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    }
+}
+
+project(globalExceptionHandlerModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(demoHealthCheckModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+// ============================================================================================== Authentication Service
+project(authenticationServiceModule) {
+    dependencies {
+        implementation commonProject
+        implementation healthCheckProject
+        implementation globalExceptionHandlerCoreProject
+//        implementation project(authenticationApplicationModule)
+//        implementation project(authenticationReadModelsModule)
+//        implementation project(authenticationRdbAdapterModule)
+//        implementation project(authenticationRedisAdapterModule)
+//        implementation project(authenticationWebAdapterModule)
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    bootJar {
+        enabled = true
+    }
+}
+
+project(authenticationApplicationModule) {
+    dependencies {
+        implementation commonProject
+        api project(authenticationDomainModule)
+        api project(authenticationExceptionModule)
+        api project(authenticationReadModelsModule)
+    }
+}
+
+project(authenticationDomainModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(authenticationExceptionModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(authenticationReadModelsModule) {
+    dependencies {
+        implementation commonProject
+        api project(authenticationDomainModule)
+    }
+}
+
+project(authenticationRdbAdapterModule) {
+    dependencies {
+        implementation commonProject
+        implementation jpaCoreProject
+    }
+}
+
+project(authenticationRedisAdapterModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(authenticationMemberClientAdapterModule) {
+    dependencies {
+        implementation commonProject
+        implementation project(authenticationMemberClientAdapterModule)
+    }
+}
+
+project(authenticationWebAdapterModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+// ============================================================================================== Member Profile Service
+project(memberProfileServiceModule) {
+    dependencies {
+        implementation commonProject
+        implementation healthCheckProject
+        implementation globalExceptionHandlerCoreProject
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    bootJar {
+        enabled = true
+    }
+}
+
+project(memberProfileApplicationModule) {
+    dependencies {
+        implementation commonProject
+        api project(memberProfileDomainModule)
+        api project(memberProfileExceptionModule)
+        api project(memberProfileReadModelsModule)
+    }
+}
+
+project(memberProfileDomainModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(memberProfileExceptionModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(memberProfileReadModelsModule) {
+    dependencies {
+        implementation commonProject
+        api project(memberProfileDomainModule)
+    }
+}
+
+project(memberProfileClientApiModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(memberProfileRdbAdapterModule) {
+    dependencies {
+        implementation commonProject
+        implementation jpaCoreProject
+    }
+}
+
+project(memberProfileWebAdapterModule) {
+    dependencies {
+        implementation commonProject
+    }
+}
+
+project(memberProfileInternalApiModule) {
+    dependencies {
+        implementation commonProject
+    }
 }
