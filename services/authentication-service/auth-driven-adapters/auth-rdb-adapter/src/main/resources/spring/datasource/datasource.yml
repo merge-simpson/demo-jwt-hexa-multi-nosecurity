@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${AUTH_POSTGRES_URL}
+    username: ${AUTH_POSTGRES_USERNAME}
+    password: ${AUTH_POSTGRES_PASSWORD}
+    hikari:
+      connectionTimeout: 600_000
+      idleTimeout: 60_000
+      maximum-pool-size: 300
+      minimum-idle: 5
+      maxLifetime: 600_000
+      leak-detection-threshold: 2000 # [ms]
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 1_0_0
+    locations:
+      - db/migration/v1m1
+      - db/migration/v1m2
+      - db/migration/v1m3

@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: ${AUTH_POSTGRES_URL:jdbc:postgresql://localhost:5433/auth}
+    username: ${AUTH_POSTGRES_USERNAME:root}
+    password: ${AUTH_POSTGRES_PASSWORD:root}
+    hikari:
+      connectionTimeout: 10_000
+      idleTimeout: 10_000
+      maximum-pool-size: 5
+      minimum-idle: 2
+      maxLifetime: 10_000
+      leak-detection-threshold: 2000 # [ms]

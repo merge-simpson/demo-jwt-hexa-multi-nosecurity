@@ -111,7 +111,7 @@ project(authenticationServiceModule) {
         implementation globalExceptionHandlerCoreProject
 //        implementation project(authenticationApplicationModule)
 //        implementation project(authenticationReadModelsModule)
-//        implementation project(authenticationRdbAdapterModule)
+        implementation project(authenticationRdbAdapterModule)
 //        implementation project(authenticationRedisAdapterModule)
 //        implementation project(authenticationWebAdapterModule)
         implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -155,6 +155,13 @@ project(authenticationRdbAdapterModule) {
     dependencies {
         implementation commonProject
         implementation jpaCoreProject
+        implementation project(authenticationApplicationModule)
+
+        // DB
+        runtimeOnly 'org.postgresql:postgresql'
+
+        // Flyway
+        implementation 'org.flywaydb:flyway-core'
     }
 }
 
