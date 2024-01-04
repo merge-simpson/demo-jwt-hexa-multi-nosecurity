@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  demo_auth_postgres14:
+    image: postgres:14
+    environment:
+      TZ: Asia/Seoul
+      POSTGRES_DB: auth
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+    ports:
+      - 5433:5432
+    restart: on-failure
+    volumes:
+      - stick_volumn_auth_postgres14:/var/lib/postgresql/data
+      - ./db/initdb.d:/docker-entrypoint-initdb.d:ro
+
+  demo_member_profile_postgres14:
+    image: postgres:14
+    environment:
+      TZ: Asia/Seoul
+      POSTGRES_DB: profile
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+    ports:
+      - 5442:5432
+    restart: on-failure
+    volumes:
+      - stick_volumn_member_profile_postgres14:/var/lib/postgresql/data
+      - ./db/initdb.d:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  stick_volumn_auth_postgres14:
+  stick_volumn_member_profile_postgres14:
