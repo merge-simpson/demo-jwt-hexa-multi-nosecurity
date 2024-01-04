@@ -1,4 +1,4 @@
-package com.example.common.support.exception;
+package com.example.common.support.exception.response;
 
 import lombok.Builder;
 import lombok.NonNull;

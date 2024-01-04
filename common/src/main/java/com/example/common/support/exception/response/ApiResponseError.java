@@ -1,5 +1,7 @@
-package com.example.common.support.exception;
+package com.example.common.support.exception.response;
 
+import com.example.common.support.exception.CustomException;
+import com.example.common.support.exception.ErrorCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Builder;
