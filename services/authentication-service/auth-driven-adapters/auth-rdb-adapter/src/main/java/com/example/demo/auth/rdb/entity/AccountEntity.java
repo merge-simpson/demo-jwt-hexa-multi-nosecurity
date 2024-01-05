@@ -1,4 +1,4 @@
-package com.example.auth.rdb.entity;
+package com.example.demo.auth.rdb.entity;
 
 import com.example.auth.domain.types.AccountStatus;
 import com.example.demo.jpa.support.UuidBaseEntity;
@@ -13,8 +13,8 @@ import lombok.ToString;
 
 import java.time.Instant;
 
-import static com.example.auth.rdb.support.AuthRdbConstants.SCHEMA_NAME;
-import static com.example.auth.rdb.support.AuthRdbConstants.TB_ACCOUNT;
+import static com.example.demo.auth.rdb.support.AuthRdbConstants.SCHEMA_NAME;
+import static com.example.demo.auth.rdb.support.AuthRdbConstants.TB_ACCOUNT;
 
 @Entity
 @Builder
