@@ -109,11 +109,11 @@ project(authenticationServiceModule) {
         implementation commonProject
         implementation healthCheckProject
         implementation globalExceptionHandlerCoreProject
-//        implementation project(authenticationApplicationModule)
-//        implementation project(authenticationReadModelsModule)
+        implementation project(authenticationApplicationModule)
+        implementation project(authenticationReadModelsModule)
         implementation project(authenticationRdbAdapterModule)
-//        implementation project(authenticationRedisAdapterModule)
-//        implementation project(authenticationWebAdapterModule)
+        implementation project(authenticationRedisAdapterModule)
+        implementation project(authenticationWebAdapterModule)
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
@@ -191,6 +191,10 @@ project(memberProfileServiceModule) {
         implementation commonProject
         implementation healthCheckProject
         implementation globalExceptionHandlerCoreProject
+        implementation project(memberProfileApplicationModule)
+        implementation project(memberProfileRdbAdapterModule)
+        implementation project(memberProfileWebAdapterModule)
+        implementation project(memberProfileInternalApiAdapterModule)
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
@@ -249,7 +253,7 @@ project(memberProfileWebAdapterModule) {
     }
 }
 
-project(memberProfileInternalApiModule) {
+project(memberProfileInternalApiAdapterModule) {
     dependencies {
         implementation commonProject
         implementation project(memberProfileApplicationModule)
