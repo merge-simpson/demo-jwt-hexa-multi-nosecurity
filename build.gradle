@@ -174,13 +174,15 @@ project(authenticationRedisAdapterModule) {
 project(authenticationMemberClientAdapterModule) {
     dependencies {
         implementation commonProject
-        implementation project(authenticationMemberClientAdapterModule)
+        implementation project(authenticationApplicationModule)
+        implementation project(memberProfileClientApiModule)
     }
 }
 
 project(authenticationWebAdapterModule) {
     dependencies {
         implementation commonProject
+        implementation project(authenticationApplicationModule)
     }
 }
 // ============================================================================================== Member Profile Service
@@ -236,17 +238,20 @@ project(memberProfileRdbAdapterModule) {
     dependencies {
         implementation commonProject
         implementation jpaCoreProject
+        implementation project(memberProfileApplicationModule)
     }
 }
 
 project(memberProfileWebAdapterModule) {
     dependencies {
         implementation commonProject
+        implementation project(memberProfileApplicationModule)
     }
 }
 
 project(memberProfileInternalApiModule) {
     dependencies {
         implementation commonProject
+        implementation project(memberProfileApplicationModule)
     }
 }
