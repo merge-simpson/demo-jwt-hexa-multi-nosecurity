@@ -2,9 +2,11 @@ rootProject.name = 'demo-jwt-hexa-multi-nosecurity'
 
 include 'common'
 
+include 'core-modules:webmvc-cors-config'
 include 'core-modules:demo-health-check'
 include 'core-modules:demo-jpa-core'
 include 'core-modules:global-exception-handler-core'
+findProject(':core-modules:webmvc-cors-config')?.name = 'webmvc-cors-config'
 findProject(':core-modules:demo-health-check')?.name = 'demo-health-check'
 findProject(':core-modules:demo-jpa-core')?.name = 'demo-jpa-core'
 findProject(':core-modules:global-exception-handler-core')?.name = 'global-exception-handler-core'

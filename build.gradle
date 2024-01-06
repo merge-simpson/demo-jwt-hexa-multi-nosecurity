@@ -6,6 +6,7 @@ plugins {
 }
 
 var commonProject = project(':common')
+var corsConfigProject = project(corsConfigModule)
 var healthCheckProject = project(demoHealthCheckModule)
 var jpaCoreProject = project(demoJpaCoreModule)
 var globalExceptionHandlerCoreProject = project(globalExceptionHandlerModule)
@@ -81,8 +82,13 @@ subprojects {
     }
 }
 
-project(':common') {
-    // ...
+project(':common') { /* ... */ }
+
+project(corsConfigModule) {
+    dependencies {
+        implementation commonProject
+        implementation 'org.springframework:spring-webmvc'
+    }
 }
 
 project(demoJpaCoreModule) {
@@ -107,6 +113,7 @@ project(demoHealthCheckModule) {
 project(authenticationServiceModule) {
     dependencies {
         implementation commonProject
+        implementation corsConfigProject
         implementation healthCheckProject
         implementation globalExceptionHandlerCoreProject
         implementation project(authenticationApplicationModule)
@@ -189,6 +196,7 @@ project(authenticationWebAdapterModule) {
 project(memberProfileServiceModule) {
     dependencies {
         implementation commonProject
+        implementation corsConfigProject
         implementation healthCheckProject
         implementation globalExceptionHandlerCoreProject
         implementation project(memberProfileApplicationModule)
