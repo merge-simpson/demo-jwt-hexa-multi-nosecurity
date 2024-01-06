@@ -3,10 +3,10 @@ app:
     max-age: 1800
     exposed-headers: "*"
     log-level: info
+    allows-credentials: true
     allowed:
       methods: "*"
       headers: "*"
       origins:
         - https://사이트도메인
         - https://사이트도메인
-      credentials: true
