@@ -1,0 +1,8 @@
+app:
+  cors:
+    log-level: DEBUG
+    allowed:
+      origins:
+        - http://localhost:3000
+        - https://localhost:3000
+        - https://127.0.0.1:3000
