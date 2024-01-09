@@ -2,10 +2,12 @@ package com.example.cors.properties;
 
 import com.example.cors.properties.allowed.CorsAllowedProperties;
 import com.example.cors.properties.types.LogLevel;
+import lombok.Builder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
+@Builder
 @ConfigurationProperties(prefix = "app.cors")
 @ConfigurationPropertiesBinding
 public record CorsProperties(
