@@ -1,11 +1,9 @@
 package com.example.cors.config;
 
-
 import com.example.cors.properties.CorsProperties;
 import com.example.cors.properties.types.LogLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @RequiredArgsConstructor
 @ConfigurationPropertiesScan(basePackageClasses = CorsProperties.class)
-@EnableConfigurationProperties(CorsProperties.class)
 public class CorsConfiguration implements WebMvcConfigurer {
 
     private final CorsProperties corsProperties;
