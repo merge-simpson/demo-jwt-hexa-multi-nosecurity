@@ -8,4 +8,5 @@ spring:
   config:
     import:
       - spring/datasource/datasource.yml
+      - app/jwt/jwt.yml
       - app/cors/cors.yml
