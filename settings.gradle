@@ -36,6 +36,7 @@ include 'services:member-profile-service:member-profile-apis:member-profile-doma
 include 'services:member-profile-service:member-profile-apis:member-profile-exception'
 include 'services:member-profile-service:member-profile-apis:member-profile-readmodels'
 include 'services:member-profile-service:member-profile-apis:member-profile-client-api'
+include 'services:member-profile-service:member-profile-apis:member-profile-openfeign-client-base'
 include 'services:member-profile-service:member-profile-driven-adapters:member-profile-rdb-adapter'
 include 'services:member-profile-service:member-profile-driving-adapters:member-profile-web-adapter'
 include 'services:member-profile-service:member-profile-driving-adapters:member-profile-internal-api'
@@ -45,6 +46,8 @@ findProject(':services:member-profile-service:member-profile-apis:member-profile
 findProject(':services:member-profile-service:member-profile-apis:member-profile-exception')?.name = 'member-profile-exception'
 findProject(':services:member-profile-service:member-profile-apis:member-profile-readmodels')?.name = 'member-profile-readmodels'
 findProject(':services:member-profile-service:member-profile-apis:member-profile-client-api')?.name = 'member-profile-client-api'
+findProject(':services:member-profile-service:member-profile-apis:member-profile-openfeign-client-base')?.name = 'member-profile-openfeign-client-base'
 findProject(':services:member-profile-service:member-profile-driven-adapters:member-profile-rdb-adapter')?.name = 'member-profile-rdb-adapter'
 findProject(':services:member-profile-service:member-profile-driving-adapters:member-profile-web-adapter')?.name = 'member-profile-web-adapter'
 findProject(':services:member-profile-service:member-profile-driving-adapters:member-profile-internal-api')?.name = 'member-profile-internal-api'
+

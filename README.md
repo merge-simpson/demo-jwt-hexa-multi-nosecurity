@@ -1,4 +1,4 @@
-# demo-jwt-hexa-multi-nosecurity
+# Boiler Plate for Practice of JWT + Hexagonal + Multi-modules + no spring security
 
 다음을 포함:
 
