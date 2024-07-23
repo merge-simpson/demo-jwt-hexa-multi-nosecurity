@@ -1,13 +1,17 @@
-# Boiler Plate for Practice of JWT + Hexagonal + Multi-modules + no spring security
+# Boiler Plate for Practice of JWT + Hexagonal
 
-다음을 포함:
++ Multi-modules + Excluding Spring Security
+
+This project is a boiler plate for members to study JWT with hexagonal architecture.  
+
+Included:
 
 - [X] JJWT
 - [X] Multi Modules
 - [X] Hexagonal Architecture
 - [X] FeignClient
 
-다음을 포함하지 않음.
+Excluded(comparing to another versions):
 
 - [ ] BFF
 - [ ] WebFlux
@@ -47,4 +51,4 @@ Or add VM argument:
 
 ## 3. Run or Debug
 
-You can run this applications now.
+You can run the applications now.
